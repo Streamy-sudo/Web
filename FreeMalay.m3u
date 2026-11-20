@@ -18,3 +18,9 @@ https://streamy-sudo.github.io/Web/8TV.m3u8
 #EXTINF:-1 group-title="Malay" ch-number="109" tvg-id="TV9" tvg-chno="109" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/48_144.png",TV9
 https://streamy-sudo.github.io/Web/TV9.m3u8
 
+#EXTINF:-1 group-title="Malay" ch-number="114" tvg-id="TVAlhijrah" tvg-chno="114" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/149_144.png",TV Alhijrah Plus
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 18_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Mobile/15E148 Safari/604.1
+#EXTVLCOPT:http-referrer=https://alhijrahplus.com/live/
+https://172048-castr.akamaized.net/61e0e9a88ecf869e0a595bfa/live_a1928910dcc111f19801698f21c04b44/index.m3u8
+
+
