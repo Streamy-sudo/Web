@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TV LIVE</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding:16px;padding-top:50px}
+  .video-wrap{background:#000;border-radius:18px;overflow:hidden;aspect-ratio:16/9;position:relative;cursor:pointer}
+  video{width:100%;height:100%;object-fit:cover;background:#000}
+  .shaka-video-container{width:100%;height:100%;border-radius:18px;overflow:hidden}
+  .shaka-spinner, .shaka-spinner-container, .shaka-loading, .shaka-buffering { display:none !important; opacity:0 !important; }
+  #loadingCover{position:absolute;inset:0;background:#000;z-index:5;pointer-events:none;transition:opacity .3s}
+  #loadingCover.hide{opacity:0}
+  .tap-hint{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.6);padding:6px 10px;border-radius:99px;font-size:12px;pointer-events:none;z-index:10}
+  .channels{display:flex;gap:10px;overflow-x:auto;padding:16px 2px;scrollbar-width:none}
+  .channels::-webkit-scrollbar{display:none}
+  .ch-btn{flex-shrink:0;display:flex;align-items:center;gap:10px;background:#1c1c1e;border:none;color:#fff;padding:10px 18px 10px 12px;border-radius:999px;cursor:pointer;font-size:16px;font-weight:600}
+  .ch-btn.active{background:#fff;color:#000}
+  .ch-btn .logo{font-weight:900;font-style:italic;font-size:20px;letter-spacing:-1px;line-height:1;display:flex;align-items:center}
+  .logo-tv1{color:#3b82f6}.logo-tv1 b{color:#ef4444}
+  .logo-tv2{color:#f97316}.logo-tv2 b{color:#000;background:#f97316;padding:0 2px;border-radius:3px}
+  .logo-tv3{color:#facc15}.logo-tv3 b{color:#3b82f6}.logo-tv3 i{color:#ef4444;font-style:normal}
+  .logo-didik{color:#22c55e;font-size:14px!important}
+  .logo-8tv{color:#f97316;font-size:18px!important}
+  .logo-tv9{color:#22c55e}.logo-tv9 b{color:#fff}
+  .epg-card{background:#1c1c1e;border-radius:20px;padding:20px;margin-top:4px}
+  .epg-card h2{font-size:22px;margin-bottom:14px}
+  .epg-now{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .epg-now .title{color:#22c55e;font-weight:700;font-size:17px;display:flex;align-items:center;gap:8px}
+  .epg-now .dot{width:10px;height:10px;background:#22c55e;border-radius:50%;flex-shrink:0}
+  .epg-now .pct{color:#8e8e93;font-weight:600;font-size:15px}
+  .progress{height:6px;background:#3a3a3c;border-radius:99px;margin:14px 0;overflow:hidden}
+  .progress-fill{height:100%;background:#22c55e;border-radius:99px;transition:width .5s}
+  .epg-time{color:#aeaeb2;font-size:15px;margin-bottom:10px}
+  .epg-next{color:#d1d1d6;font-size:16px;font-weight:600}
+  .epg-next span{color:#8e8e93;font-weight:500}
+</style>
+</head>
+<body>
+<div class="video-wrap" id="videoWrap">
+  <div class="shaka-video-container" data-shaka-player>
+    <video id="video" autoplay muted playsinline preload="auto" data-shaka-player></video>
+  </div>
+  <div id="loadingCover"></div>
+  <div class="tap-hint" id="tapHint">🔊 Tekan untuk bunyi</div>
+</div>
+<div class="channels" id="channels">
+  <button class="ch-btn active" onclick="playChannel(this,'TV1','https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8')"><span class="logo logo-tv1">tv<b>1</b></span> TV1</button>
+  <button class="ch-btn" onclick="playChannel(this,'TV2','https://cuwf8jayq1.tenbytecdn.com/live/tv2/playlist.m3u8')"><span class="logo logo-tv2">tv<b>2</b></span> TV2</button>
+  <button class="ch-btn" onclick="playChannel(this,'TV3','https://raw.githubusercontent.com/Streamy-sudo/Web/refs/heads/main/TV3.m3u8')"><span class="logo logo-tv3">TV<i>3</i></span> TV3</button>
+  <button class="ch-btn" onclick="playChannel(this,'DidikTV','http://tv.cloudcdn.me/live/00:1A:79:04:55:C4/757/93771.m3u8')"><span class="logo logo-didik">DidikTV</span> DidikTV</button>
+  <button class="ch-btn" onclick="playChannel(this,'8TV','http://tv.cloudcdn.me/live/00:1A:79:04:55:C4/757/132145.m3u8')"><span class="logo logo-8tv">8TV</span> 8TV</button>
+  <button class="ch-btn" onclick="playChannel(this,'TV9','http://tv.cloudcdn.me/live/00:1A:79:04:55:C4/757/93777.m3u8')"><span class="logo logo-tv9">tv<b>9</b></span> TV9</button>
+</div>
+<div class="epg-card">
+  <h2 id="epgChannel">TV1</h2>
+  <div class="epg-now">
+    <div class="title"><span class="dot"></span> SEKARANG: <span id="epgNow" style="color:#22c55e">Loading...</span></div>
+    <div class="pct" id="epgPct">0%</div>
+  </div>
+  <div class="progress"><div class="progress-fill" id="epgBar" style="width:0%"></div></div>
+  <div class="epg-time" id="epgNowTime">-</div>
+  <div class="epg-next">SELEPAS: <span id="epgNext">-</span> <span id="epgNextTime"></span></div>
+</div>
+<script>
+const video = document.getElementById('video');
+const loadingCover = document.getElementById('loadingCover');
+let player, epgData={}, currentChannel='TV1', currentUrl='', stallTimer=null;
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>0);
+const canNativeHLS = video.canPlayType('application/vnd.apple.mpegurl');
+const useNative = isIOS && canNativeHLS;
+const EPG_URL='https://raw.githubusercontent.com/AqFad2811/epg/refs/heads/main/epg.xml';
+const EPG_MAP={'tv1':'tv1','tv2':'tv2','tv3':'tv3','didiktv':'didiktvkpm','8tv':'8tv','tv9':'tv9'};
 
+video.addEventListener('playing', ()=>{ loadingCover.classList.add('hide'); clearTimeout(stallTimer); });
+video.addEventListener('waiting', ()=>{
+  loadingCover.classList.remove('hide');
+  clearTimeout(stallTimer);
+  stallTimer = setTimeout(()=>{ if(currentUrl) reloadCurrent(); }, 4000);
+});
+video.addEventListener('error', ()=>{ if(currentUrl) setTimeout(reloadCurrent, 1500); });
+async function reloadCurrent(){ try{ if(useNative){ video.src=currentUrl; await video.play(); } else { await player.load(currentUrl); video.play(); } }catch(e){} }
+
+async function loadEPG(){
+  try{
+    const res=await fetch(EPG_URL); const text=await res.text();
+    const xml=new DOMParser().parseFromString(text,'text/xml');
+    const idToName={};
+    xml.querySelectorAll('channel').forEach(ch=>{ idToName[ch.getAttribute('id')]=ch.querySelector('display-name')?.textContent||ch.getAttribute('id'); });
+    xml.querySelectorAll('programme').forEach(p=>{
+      const chId=p.getAttribute('channel'); const chName=(idToName[chId]||chId).toLowerCase();
+      const title=p.querySelector('title')?.textContent||'';
+      const start=parseEPGTime(p.getAttribute('start')); const stop=parseEPGTime(p.getAttribute('stop'));
+      if(!epgData[chName]) epgData[chName]=[]; epgData[chName].push({start,stop,title});
+      const idKey=chId.toLowerCase(); if(!epgData[idKey]) epgData[idKey]=[];
+      if(idKey!==chName) epgData[idKey].push({start,stop,title});
+    });
+    updateEPG();
+  }catch(e){ document.getElementById('epgNow').textContent='EPG gagal load'; }
+}
+function parseEPGTime(s){
+  if(!s) return new Date(); const dp=s.slice(0,14);
+  const y=+dp.slice(0,4),m=+dp.slice(4,6)-1,d=+dp.slice(6,8),h=+dp.slice(8,10),mi=+dp.slice(10,12),sec=+dp.slice(12,14)||0;
+  const tz=s.match(/([+-])(\d{2})(\d{2})/); let off=480;
+  if(tz){ const sign=tz[1]==='+'?1:-1; off=sign*(+tz[2]*60+ +tz[3]); }
+  return new Date(Date.UTC(y,m,d,h,mi,sec)-(off*60*1000));
+}
+function findEPG(name){
+  const mapped=EPG_MAP[name.toLowerCase().replace(/\s/g,'')];
+  if(mapped&&epgData[mapped]) return epgData[mapped];
+  const keys=Object.keys(epgData); const lower=name.toLowerCase().replace(/\s/g,'');
+  let f=keys.find(k=>k.replace(/[^a-z0-9]/g,'')===lower);
+  if(!f) f=keys.find(k=>k.replace(/[^a-z0-9]/g,'').includes(lower));
+  return f?epgData[f]:null;
+}
+function fmtFull(d){
+  return d.toLocaleDateString('ms-MY',{day:'2-digit',month:'short',timeZone:'Asia/Kuala_Lumpur'})+', '+d.toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:'Asia/Kuala_Lumpur'}).toUpperCase().replace('PM','PTG').replace('AM','PG');
+}
+function updateEPG(){
+  document.getElementById('epgChannel').textContent=currentChannel;
+  const list=findEPG(currentChannel);
+  if(!list){ document.getElementById('epgNow').textContent='Tiada EPG'; return; }
+  const now=new Date(); list.sort((a,b)=>a.start-b.start);
+  const cur=list.find(p=>now>=p.start&&now<p.stop);
+  const nxt=list.find(p=>p.start>now);
+  if(cur){
+    document.getElementById('epgNow').textContent=cur.title;
+    document.getElementById('epgNowTime').textContent=fmtFull(cur.start)+' - '+fmtFull(cur.stop);
+    const pct=Math.round((now-cur.start)/(cur.stop-cur.start)*100);
+    document.getElementById('epgPct').textContent=pct+'%';
+    document.getElementById('epgBar').style.width=pct+'%';
+  } else { document.getElementById('epgNow').textContent='Tiada program sekarang'; document.getElementById('epgPct').textContent='0%'; document.getElementById('epgBar').style.width='0%'; }
+  if(nxt){ document.getElementById('epgNext').textContent=nxt.title; }
+  else document.getElementById('epgNext').textContent='-';
+}
+setInterval(updateEPG,30000);
+async function init(){
+  if(!useNative){
+    shaka.polyfill.installAll(); player=new shaka.Player(video);
+    player.configure({
+      streaming:{
+        bufferingGoal:30,
+        rebufferingGoal:10,
+        bufferBehind:30,
+        lowLatencyMode:false,
+        retryParameters:{ maxAttempts:10, baseDelay:500, backoffFactor:2, timeout:15000 },
+        stallSkip:0.5
+      },
+      manifest:{ retryParameters:{ maxAttempts:10, baseDelay:500, backoffFactor:2 } }
+    });
+  }
+  loadEPG();
+  playChannel(document.querySelector('.ch-btn'),'TV1','https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8');
+  document.getElementById('videoWrap').addEventListener('click', ()=>{
+    video.muted = !video.muted;
+    document.getElementById('tapHint').style.display = video.muted ? 'block' : 'none';
+    video.play();
+  });
+}
+async function playChannel(btn,name,url){
+  currentChannel=name; currentUrl=url;
+  document.querySelectorAll('.ch-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  loadingCover.classList.remove('hide');
+  updateEPG();
+  try{
+    if(useNative){ video.src = url; await video.play(); }
+    else { await player.load(url); video.play(); }
+  }catch(e){ setTimeout(reloadCurrent, 1000); }
+}
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
