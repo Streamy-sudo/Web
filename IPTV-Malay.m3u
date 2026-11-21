@@ -1,8 +1,18 @@
 #EXTM3U x-tvg-url="https://raw.githubusercontent.com/AqFad2811/epg/refs/heads/main/epg.xml"
 
 #EXTINF:-1 group-title="Malay" ch-number="101" tvg-id="TV1" tvg-chno="101" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/395_144.png",TV1
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#EXTVLCOPT:network-caching=20000
+#EXTVLCOPT:live-caching=20000
+#EXTVLCOPT:file-caching=20000
+#EXTVLCOPT:clock-jitter=0
+#EXTVLCOPT:clock-synchro=0
+#EXTVLCOPT:deinterlace=1
+#EXTVLCOPT:deinterlace-mode=linear
+#EXTVLCOPT:avcodec-hw=any
+#EXTVLCOPT:avcodec-threads=4
+#EXTVLCOPT:avcodec-skip-frame=1
+#EXTVLCOPT:http-reconnect=true
+#EXTVLCOPT:http-continuous=true
 https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8?md5=yxZJNWCB2KTSq6Wi9c2Yog&expires=1791517449
 
 #EXTINF:-1 group-title="Malay" ch-number="102" tvg-id="TV2" tvg-chno="102" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/396_144.png",TV2
