@@ -29,7 +29,7 @@ https://0pnspbp7iq.tenbytecdn.com/live/sukanrtm/playlist.m3u8?md5=x4xAqIDlaqxJK2
 #EXTVLCOPT:http-referrer=https://alhijrahplus.com/live/
 https://172048-castr.akamaized.net/61e0e9a88ecf869e0a595bfa/live_a1928910dcc111f19801698f21c04b44/index.m3u8
 
-#EXTINF:-1 tvg-logo="https://s3.tvstv.my/wp-content/uploads/2024/03/tvs-logo-reduced.png" tvg-id="TVS" group-title="Malay",TVS
+#EXTINF:-1 tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/429_144.png" tvg-id="TVS" group-title="Malay",TVS
 https://streamy-sudo.github.io/Web/TVS.m3u8
 
 #EXTINF:-1 group-title="Malay" ch-number="123" tvg-id="BERITARTM" tvg-chno="123" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/620_144.png",Berita RTM
