@@ -3,8 +3,6 @@
 #EXTINF:-1 group-title="Malay" ch-number="101" tvg-id="TV1" tvg-chno="101" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/395_144.png",TV1
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.stream_selection_type=auto
-#KODIPROP:inputstream.adaptive.manifest_update_parameter=full
 https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8?md5=yxZJNWCB2KTSq6Wi9c2Yog&expires=1791517449
 
 #EXTINF:-1 group-title="Malay" ch-number="102" tvg-id="TV2" tvg-chno="102" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/396_144.png",TV2
