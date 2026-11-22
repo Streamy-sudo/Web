@@ -212,22 +212,21 @@ https://streamy-sudo.github.io/Web/Suria.m3u8
 #EXTVLCOPT:http-continuous=true
 https://streamy-sudo.github.io/Web/Mnctv.m3u8
 
-#EXTINF:-1 tvg-id="TransTV.id@SD" tvg-name="E04" tvg-logo="https://www.visionplus.id/images/repository/585/585-LOGO-m.png" group-title="Indonesia Channels",TRANSTV
+#EXTINF:-1 tvg-id="TransTV.id@SD" tvg-name="E04" tvg-logo="https://www.visionplus.id/images/repository/585/585-LOGO-m.png" group-title="Indo",TRANSTV
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 https://live.cnbcindonesia.com/transtv/smil:transtv.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-id="Trans7.id@SD" tvg-name="E05" tvg-logo="https://www.visionplus.id/images/repository/586/586-LOGO-m.png" group-title="Indonesia Channels",TRANS7
+#EXTINF:-1 tvg-id="Trans7.id@SD" tvg-name="E05" tvg-logo="https://www.visionplus.id/images/repository/586/586-LOGO-m.png" group-title="Indo",TRANS7
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 https://live.cnbcindonesia.com/trans7/smil:trans7.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="https://www.visionplus.id/images/repository/587/587-LOGO-m.png" ch-number="" tvg-id="ANTV.id@SD" group-title="Indonesia Channels",ANTV
+#EXTINF:-1 tvg-logo="https://www.visionplus.id/images/repository/587/587-LOGO-m.png" ch-number="" tvg-id="ANTV.id@SD" group-title="Indo",ANTV
 #EXTVLCOPT:http-referrer=https://www.vidio.com/
 #EXTVLCOPT:http-user-agent=VidioPlayer/6.41.11
-#EXTVLCOPT:http-origin=https://m.vidio.com
 https://nextgenz.my.id/event/pidio/play.mpd?id=782&type=dash
 
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
-#EXTINF:-1 tvg-id="RajawaliTV.id@SD" tvg-logo="https://www.visionplus.id/images/repository/588/588-LOGO-m.png" group-title="Indonesia Channels",RTV
+#EXTINF:-1 tvg-id="RajawaliTV.id@SD" tvg-logo="https://www.visionplus.id/images/repository/588/588-LOGO-m.png" group-title="Indo",RTV
 https://op-flashcon-digdayahd-1.dens.tv/h/h10/index.m3u8
 
 #EXTINF:-1 tvg-id="ZAYAN" tvg-name="ZAYAN" ch-number="876" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/292_144.png" group-title="radio",ZAYAN
