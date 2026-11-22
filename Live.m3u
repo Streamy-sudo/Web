@@ -206,7 +206,7 @@ https://stream.rcs.revma.com/azatk0tbv4uvv/hls.m3u8
 #EXTINF:-1 tvg-id="ERA" tvg-name="ERA" ch-number="856" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/14_144.png" group-title="radio",ERA FM
 https://stream.rcs.revma.com/crec9cmbv4uvv/hls.m3u8
 
-#EXTINF:-1 tvg-id="" tvg-name="HOT" ch-number="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Hot_FM_2021.svg/320px-Hot_FM_2021.svg.png" group-title="radio",HOT FM
+#EXTINF:-1 tvg-id="" tvg-name="HOT" ch-number="" tvg-logo="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Hot_FM_2021.svg/330px-Hot_FM_2021.svg.png?utm_source=ms.wikipedia.org&utm_campaign=index&utm_content=thumbnail" group-title="radio",HOT FM
 https://stream.rcs.revma.com/drakdf8mtd3vv/hls.m3u8
 
 #EXTINF:-1 tvg-id="Selangor FM" group-title="radio" radio="true" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/61/Selangor_FM_logo.png",Selangor FM
