@@ -8,6 +8,7 @@
 <style>
   body { margin:0; background:#000; color:#fff; font-family:sans-serif; text-align:center; }
   h2 { margin:15px 0 5px; }
+  #status { font-size:13px; color:#aaa; margin:5px; }
   video { width:100%; max-width:900px; aspect-ratio:16/9; background:#000; }
   .btns { margin:15px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
   button { padding:12px 20px; font-size:16px; border:0; border-radius:20px; background:#222; color:#fff; cursor:pointer; }
@@ -17,6 +18,7 @@
 <body>
 
 <h2 id="title">TV1</h2>
+<div id="status">Loading...</div>
 <video id="video" controls autoplay playsinline></video>
 
 <div class="btns">
@@ -27,41 +29,71 @@
 
 <script>
   var video = document.getElementById('video');
+  var status = document.getElementById('status');
   var hls = null;
+
+  var tv3_raw = "http://31.42.176.223:80/live/00:1A:79:04:55:C4/757/93776.m3u8";
 
   var channels = {
     tv1: {
       name: "TV1",
-      src: "https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8?md5=yxZJNWCB2KTSq6Wi9c2Yog&expires=1791517449"
+      urls: ["https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8?md5=yxZJNWCB2KTSq6Wi9c2Yog&expires=1791517449"]
     },
     tv2: {
       name: "TV2",
-      src: "https://cuwf8jayq1.tenbytecdn.com/live/tv2/playlist.m3u8?md5=7PQt3N4f2HMX5yQewjdp2Q&expires=1791637928"
+      urls: ["https://cuwf8jayq1.tenbytecdn.com/live/tv2/playlist.m3u8?md5=7PQt3N4f2HMX5yQewjdp2Q&expires=1791637928"]
     },
     tv3: {
       name: "TV3",
-      src: "https://corsproxy.io/?url=" + encodeURIComponent("http://31.42.176.223:80/live/00:1A:79:04:55:C4/757/93776.m3u8")
+      urls: [
+        // Cuba proxy 1
+        "https://corsproxy.io/?url=" + encodeURIComponent(tv3_raw),
+        // Cuba proxy 2
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(tv3_raw),
+        // Cuba proxy 3
+        "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(tv3_raw),
+        // Last resort - direct http (akan block kat https, tapi kat http ok)
+        tv3_raw
+      ]
     }
   };
 
-  function switchChannel(key) {
-    document.getElementById('title').innerText = channels[key].name;
-    document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    document.getElementById('btn-' + key).classList.add('active');
-
-    var src = channels[key].src;
+  function tryUrl(list, index) {
+    if (index >= list.length) {
+      status.innerText = "Semua proxy gagal. Server TV3 block browser.";
+      return;
+    }
+    status.innerText = "Cuba server " + (index + 1) + " / " + list.length + "...";
+    var src = list[index];
     if (hls) { hls.destroy(); hls = null; }
 
     if (Hls.isSupported()) {
       hls = new Hls();
       hls.loadSource(src);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        status.innerText = "Playing - Proxy " + (index + 1);
+        video.play();
+      });
+      hls.on(Hls.Events.ERROR, function(event, data) {
+        if (data.fatal) {
+          console.log("Proxy " + index + " gagal, cuba seterusnya");
+          tryUrl(list, index + 1);
+        }
+      });
+    } else {
       video.src = src;
       video.play();
     }
   }
+
+  function switchChannel(key) {
+    document.getElementById('title').innerText = channels[key].name;
+    document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + key).classList.add('active');
+    tryUrl(channels[key].urls, 0);
+  }
+
   switchChannel('tv1');
 </script>
 
