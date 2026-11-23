@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://raw.githubusercontent.com/AqFad2811/epg/refs/heads/main/epg.xml,https://raw.githubusercontent.com/apistech/project/refs/heads/main/epgs/guide.xml,https://raw.githubusercontent.com/AqFad2811/epg/refs/heads/main/unifitv.xml,https://walpak1.github.io/epg/starhub.xm"
+#EXTM3U x-tvg-url="https://raw.githubusercontent.com/AqFad2811/epg/refs/heads/main/epg.xml,https://raw.githubusercontent.com/apistech/project/refs/heads/main/epgs/guide.xml,https://raw.githubusercontent.com/AqFad2811/epg/refs/heads/main/unifitv.xml,https://walpak1.github.io/epg/starhub.xml"
 
 #EXTINF:-1 group-title="Malay" ch-number="101" tvg-id="TV1" tvg-chno="101" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/395_144.png",TV1
 #EXTVLCOPT:network-caching=20000
@@ -224,7 +224,7 @@ https://live.cnbcindonesia.com/trans7/smil:trans7.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="RajawaliTV.id@SD" tvg-logo="https://www.visionplus.id/images/repository/588/588-LOGO-m.png" group-title="Indo",RTV
 https://op-flashcon-digdayahd-1.dens.tv/h/h10/index.m3u8
 
-#EXTINF:-1 tvg-id="beINSPORTSHD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/213_1920x1080_HTV.png",beIN Sports HD (caonima)
+#EXTINF:-1 tvg-id="beINSPORTSHD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/213_1920x1080_HTV.png",beIN Sports HD
 #EXTVLCOPT:network-caching=20000
 #EXTVLCOPT:live-caching=20000
 #EXTVLCOPT:file-caching=20000
@@ -239,7 +239,7 @@ https://op-flashcon-digdayahd-1.dens.tv/h/h10/index.m3u8
 #EXTVLCOPT:http-continuous=true
 https://streamy-sudo.github.io/Channel/Bein1.m3u8
 
-#EXTINF:-1 tvg-id="beINSPORTS2HD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/211_1920x1080_HTV.png",beIN Sports 2 HD (caonima)
+#EXTINF:-1 tvg-id="beINSPORTS2HD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/211_1920x1080_HTV.png",beIN Sports 2 HD
 #EXTVLCOPT:network-caching=20000
 #EXTVLCOPT:live-caching=20000
 #EXTVLCOPT:file-caching=20000
@@ -254,7 +254,7 @@ https://streamy-sudo.github.io/Channel/Bein1.m3u8
 #EXTVLCOPT:http-continuous=true
 https://streamy-sudo.github.io/Channel/Bein2.m3u8
 
-#EXTINF:-1 tvg-id="beINSPORTS3HD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/214_1920x1080_HTV.png",beIN Sports 3 HD (caonima)
+#EXTINF:-1 tvg-id="beINSPORTS3HD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/214_1920x1080_HTV.png",beIN Sports 3 HD
 #EXTVLCOPT:network-caching=20000
 #EXTVLCOPT:live-caching=20000
 #EXTVLCOPT:file-caching=20000
