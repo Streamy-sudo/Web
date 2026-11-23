@@ -182,6 +182,21 @@ https://cuwf8jayq1.tenbytecdn.com/live/beritartm/playlist.m3u8?md5=Ss9Eso9V7FHOa
 #EXTVLCOPT:http-continuous=true
 https://streamy-sudo.github.io/Web/Degup.m3u8
 
+#EXTINF:-1 group-title="Kids" ch-number="" tvg-id="Nickelodeon" tvg-chno="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/370_144.png",Nickelodeon
+#EXTVLCOPT:network-caching=20000
+#EXTVLCOPT:live-caching=20000
+#EXTVLCOPT:file-caching=20000
+#EXTVLCOPT:clock-jitter=0
+#EXTVLCOPT:clock-synchro=0
+#EXTVLCOPT:deinterlace=1
+#EXTVLCOPT:deinterlace-mode=linear
+#EXTVLCOPT:avcodec-hw=any
+#EXTVLCOPT:avcodec-threads=4
+#EXTVLCOPT:avcodec-skip-frame=1
+#EXTVLCOPT:http-reconnect=true
+#EXTVLCOPT:http-continuous=true
+https://streamy-sudo.github.io/Web/Nickelodeon.m3u8
+
 #EXTINF:-1 tvg-logo="https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format='png'&Quality=85&ImageId='6318748'&EntityType='Item'&EntityId='97084'&Width=636&Height=250" tvg-id="Suria" group-title="SG",Suria
 #EXTVLCOPT:network-caching=20000
 #EXTVLCOPT:live-caching=20000
