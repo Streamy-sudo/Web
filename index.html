@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TV1 Live</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<style>
+  body { margin:0; background:#000; display:flex; justify-content:center; align-items:center; height:100vh; }
+  video { width:100%; max-width:900px; aspect-ratio:16/9; background:#000; }
+  button { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); padding:12px 25px; font-size:16px; border:0; border-radius:20px; background:#fff; }
+</style>
+</head>
+<body>
+
+<video id="video" controls autoplay playsinline></video>
+<button onclick="play()">▶ PLAY TV1</button>
+
+<script>
+  var video = document.getElementById('video');
+  // Ganti dengan link kau
+  var src = "https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8?md5=yxZJNWCB2KTSq6Wi9c2Yog&expires=1791517449";
+
+  function play() {
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+      video.play();
+    }
+  }
+  play();
+</script>
+
+</body>
+</html>
