@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TV Malaysia Live</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<style>
+  body { margin:0; background:#000; color:#fff; font-family:sans-serif; text-align:center; }
+  h2 { margin:15px 0 5px; }
+  video { width:100%; max-width:900px; aspect-ratio:16/9; background:#000; }
+  .btns { margin:15px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  button { padding:12px 20px; font-size:16px; border:0; border-radius:20px; background:#222; color:#fff; cursor:pointer; }
+  button.active { background:#fff; color:#000; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<h2 id="title">TV1</h2>
+<video id="video" controls autoplay playsinline></video>
+
+<div class="btns">
+  <button id="btn-tv1" class="active" onclick="switchChannel('tv1')">TV1</button>
+  <button id="btn-tv2" onclick="switchChannel('tv2')">TV2</button>
+  <button id="btn-tv9" onclick="switchChannel('tv9')">TV9</button>
+</div>
+
+<script>
+  var video = document.getElementById('video');
+  var hls = null;
+
+  var channels = {
+    tv1: "https://cuwf8jayq1.tenbytecdn.com/live/tv1/playlist.m3u8?md5=yxZJNWCB2KTSq6Wi9c2Yog&expires=1791517449",
+    tv2: "https://cuwf8jayq1.tenbytecdn.com/live/tv2/playlist.m3u8?md5=7PQt3N4f2HMX5yQewjdp2Q&expires=1791637928",
+    tv9: "https://streamy-sudo.github.io/Web/TV9.m3u8"
+  };
+
+  function switchChannel(key) {
+    document.getElementById('title').innerText = key.toUpperCase();
+    document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + key).classList.add('active');
+
+    if (hls) { hls.destroy(); hls = null; }
+
+    if (Hls.isSupported()) {
+      hls = new Hls();
+      hls.loadSource(channels[key]);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
+    } else {
+      video.src = channels[key];
+      video.play();
+    }
+  }
+
+  switchChannel('tv1');
+</script>
+
+</body>
+</html>
