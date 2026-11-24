@@ -239,6 +239,18 @@ https://live.cnbcindonesia.com/trans7/smil:trans7.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="RajawaliTV.id@SD" tvg-logo="https://www.visionplus.id/images/repository/588/588-LOGO-m.png" group-title="Indo",RTV
 https://op-flashcon-digdayahd-1.dens.tv/h/h10/index.m3u8
 
+#EXTINF:-1 tvg-id="" group-title="Sooka" tvg-logo="https://astromedia.com.my/wp-content/uploads/2023/07/sooka.png",Asian
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_8/hls.m3u8
+
+#EXTINF:-1 tvg-id="" group-title="Sooka" tvg-logo="https://astromedia.com.my/wp-content/uploads/2023/07/sooka.png",Local
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_9/hls.m3u8
+
+#EXTINF:-1 tvg-id="" group-title="Sooka" tvg-logo="https://astromedia.com.my/wp-content/uploads/2023/07/sooka.png",Lifestyle
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_10/hls.m3u8
+
+#EXTINF:-1 tvg-id="" group-title="Sooka" tvg-logo="https://astromedia.com.my/wp-content/uploads/2023/07/sooka.png",Movies
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_11/hls.m3u8
+
 #EXTINF:-1 tvg-id="beINSPORTSHD.sg" group-title="Sports" tvg-logo="https://poster.starhubgo.com/Linear_channels2/213_1920x1080_HTV.png",beIN Sports HD
 #EXTVLCOPT:network-caching=20000
 #EXTVLCOPT:live-caching=20000
