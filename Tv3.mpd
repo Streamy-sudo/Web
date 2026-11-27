@@ -11,7 +11,7 @@
      timeShiftBufferDepth="PT60.0S" 
      suggestedPresentationDelay="PT4.0S">
 
-    <BaseURL>https://ngtv-live-cbj.gcdn.co/Content/DASH/Live/channel(TV3)/</BaseURL>
+    <BaseURL>https://ngtv-live-cbj.gcdn.co/Content/DASH/Live/channel(TV3)</BaseURL>
 
     <Period start="PT0S" id="1">
         <AdaptationSet mimeType="video/mp4" 
